@@ -1,4 +1,4 @@
-using System.Collections;
+ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,7 +7,7 @@ public class Managers : MonoBehaviour
     static Managers _instance;
     public static Managers Instance { get { Init(); return _instance; } }
 
-    #region Content
+    #region Content     //비슷한 코드끼리 묶어 가독성 향상
     BpmManager _bpm = new BpmManager();
     FieldManager _field = new FieldManager();
     GameManagerEx _game = new GameManagerEx();
@@ -50,11 +50,11 @@ public class Managers : MonoBehaviour
             GameObject go = GameObject.Find("@Managers");
             if (go == null)
             {
-                go = new GameObject() { name = "@Managers" };
-                go.AddComponent<Managers>();
+                go = new GameObject() { name = "@Managers" };//게임 실행 시 @Managers라는 GameObject 생성
+                go.AddComponent<Managers>();//@Manager에 Managers script 드래그 하여 component 구성
 
             }
-            DontDestroyOnLoad(go);
+            DontDestroyOnLoad(go);//scene 넘어가도 계속 존재할 GameObject 설정
             _instance = go.GetComponent<Managers>();
 
             //Manager Init

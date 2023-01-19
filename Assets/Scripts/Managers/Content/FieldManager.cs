@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FieldManager
+public class FieldManager //BuildPattern ÀÇ Director
 {
     private Field field;
 

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Note : MonoBehaviour
 {
-    // Start is called before the first frame update
+  
     public void CreateNote()
     {
         Transform parent = transform.parent;
