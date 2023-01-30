@@ -25,12 +25,12 @@ public class PlayerTest : FieldObject
     // Start is called before the first frame update
     void Start()
     {
-        currentHp = maxHp;
 
 
         timingManager=FindObjectOfType<TimingManager>();
         hpBar = Util.FindChild<HpBar>(gameObject, null, true);
 
+        CurrentHp = maxHp;
         // type을 초기화하고 objectField를 받아온 뒤, objectList에 PlayerField를 받아온다.
         type = 1;
         objectField = Managers.Field.getField();
@@ -115,7 +115,7 @@ public class PlayerTest : FieldObject
     protected override void Hit()
     {
         Debug.Log("Hit!!!!");
-        GetComponent<Animator>().Play("Hit");
+        GetComponent<Animator>().SetTrigger("isHit");
         CurrentHp -= 1;
         if (CurrentHp <= 0)
             Die();
@@ -123,6 +123,7 @@ public class PlayerTest : FieldObject
     void Die()
     {
         Debug.Log("Player Die!!");
+
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {

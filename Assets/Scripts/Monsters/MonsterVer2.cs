@@ -11,9 +11,23 @@ public class MonsterVer2 : FieldObject
     MonsterPattern attackPattern = new LinePattern();
     int maxHp = 3;
     int currentHp;
+
+    HpBar hpBar;
+
+    public int CurrentHp
+    {
+        get { return currentHp; }
+        set
+        {
+            currentHp = value;
+            hpBar.updateValue(currentHp);
+        }
+    }
     private void Start()
     {
-        currentHp = maxHp;
+
+        hpBar = Util.FindChild<HpBar>(gameObject, null, true);
+        CurrentHp = maxHp;
 
         type = 2;
         objectField = Managers.Field.getField();
@@ -106,15 +120,18 @@ public class MonsterVer2 : FieldObject
 
     }
 
-
-    private void OnTriggerEnter2D(Collider2D collision)
+    protected override void Hit()
     {
-        currentHp -= 1;
-        GetComponent<Animator>().Play("Hit");
+        CurrentHp -= 1;
+        GetComponent<Animator>().SetTrigger("isHit");
 
         Debug.Log("Monster Hit");
-        if (currentHp <= 0)
+        if (CurrentHp <= 0)
             Die();
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        Hit();
     }
     void Die()
     {
