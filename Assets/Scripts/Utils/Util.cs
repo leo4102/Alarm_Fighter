@@ -38,7 +38,7 @@ public class Util
                 if(string.IsNullOrEmpty(name) || transform.name == name)
                 {
                     T component = transform.GetComponent<T>();
-                    if (component == null)
+                    if (component != null)
                         return component;
                 }
             }

@@ -10,8 +10,25 @@ public class MonsterVer2 : FieldObject
     Define.PlayerMove nextDirection = Define.PlayerMove.Right;
     MonsterPattern attackPattern = new LinePattern();
     int maxHp = 3;
+    int currentHp;
+
+    HpBar hpBar;
+
+    public int CurrentHp
+    {
+        get { return currentHp; }
+        set
+        {
+            currentHp = value;
+            hpBar.updateValue(currentHp);
+        }
+    }
     private void Start()
     {
+
+        hpBar = Util.FindChild<HpBar>(gameObject, null, true);
+        CurrentHp = maxHp;
+
         type = 2;
         objectField = Managers.Field.getField();
         objectList = objectField.getGridArray(type);
@@ -103,4 +120,21 @@ public class MonsterVer2 : FieldObject
 
     }
 
+    protected override void Hit()
+    {
+        CurrentHp -= 1;
+        GetComponent<Animator>().SetTrigger("isHit");
+
+        Debug.Log("Monster Hit");
+        if (CurrentHp <= 0)
+            Die();
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        Hit();
+    }
+    void Die()
+    {
+        Debug.Log("MonsterDIe!");
+    }
 }

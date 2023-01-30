@@ -126,7 +126,9 @@ public abstract class Field : MonoBehaviour
     {
         PolygonCollider2D poly = go.GetComponent<PolygonCollider2D>();
         poly.enabled = true;
-        yield return new WaitForEndOfFrame();
+        yield return new WaitForFixedUpdate();
+        poly.enabled = false;
+
     }
     void Awake()
     {

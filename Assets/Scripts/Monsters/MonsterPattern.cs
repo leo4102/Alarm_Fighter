@@ -6,4 +6,9 @@ public abstract class MonsterPattern
 {
     public abstract int[] calculateIndex(int currentInd);
 
+    protected int GetGridIndex(int index)
+    {
+        return index + 9;
+    }
+
 }

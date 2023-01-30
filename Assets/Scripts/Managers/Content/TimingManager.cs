@@ -70,11 +70,12 @@ public class TimingManager :MonoBehaviour
                     theAudioManager.PlaySFX("Touch");
                     noteList[i].GetComponent<Note>().HideNote();//Note 삭제 대신에 Note의 이미지만 비활성화//이유: BGM이 안 나옴
                     noteList.RemoveAt(i);
-                    Debug.Log("HIT" + j);
+                    //Debug.Log("HIT" + j);
                     return true;
                 }
             }
         }
+
 
 
         Debug.Log("Miss");//생성된 Note전부 timingRange에 속하지 않으면 Miss

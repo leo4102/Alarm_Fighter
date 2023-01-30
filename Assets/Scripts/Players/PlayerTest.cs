@@ -7,12 +7,30 @@ public class PlayerTest : FieldObject
 {
 
     TimingManager timingManager;
+    int maxHp = 3;
+    int currentHp;
+
+
+    HpBar hpBar;
+    public int CurrentHp
+    {
+        get { return currentHp; }
+        set
+        {
+            currentHp = value;
+            hpBar.updateValue(currentHp);
+        }
+    }
 
     // Start is called before the first frame update
     void Start()
     {
-        timingManager=FindObjectOfType<TimingManager>();
 
+
+        timingManager=FindObjectOfType<TimingManager>();
+        hpBar = Util.FindChild<HpBar>(gameObject, null, true);
+
+        CurrentHp = maxHp;
         // type을 초기화하고 objectField를 받아온 뒤, objectList에 PlayerField를 받아온다.
         type = 1;
         objectField = Managers.Field.getField();
@@ -85,13 +103,31 @@ public class PlayerTest : FieldObject
 
     protected override void Attack()
     {
-        // Hierachy 상에서 Player 안의 애니메이션을 받아오겠다는 이야기
+        int[] pattern = GetComponent<Weapon>().CalculateAttackRange(currentInd);
+        Managers.Field.WarningAttack(pattern);
+        Managers.Field.Attack(pattern);
+
+
         Transform attack = transform.GetChild(0);
         attack.GetComponent<PlayerAttack>().Attacking();
     }
 
     protected override void Hit()
     {
-        // hit 오버라이딩 하기
+        Debug.Log("Hit!!!!");
+        GetComponent<Animator>().SetTrigger("isHit");
+        CurrentHp -= 1;
+        if (CurrentHp <= 0)
+            Die();
     }
+    void Die()
+    {
+        Debug.Log("Player Die!!");
+
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        Hit();
+    }
+    
 }

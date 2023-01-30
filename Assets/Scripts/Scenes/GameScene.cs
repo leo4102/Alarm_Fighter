@@ -4,6 +4,23 @@ using UnityEngine;
 
 public class GameScene : BaseScene
 {
+    [SerializeField]
+    string background;
+
+    [SerializeField]
+    List<GameObject> monsters;
+
+    [SerializeField]
+    int monsterCount;
+
+    [SerializeField]
+    Field field;
+
+    [SerializeField]
+    AudioClip BGM;
+
+    
+
     public override void Clear()
     {
 
@@ -12,8 +29,9 @@ public class GameScene : BaseScene
     protected override void Init()
     {
         base.Init();
+        Managers.Game.SetMonsterCount(monsterCount);
+
+
     }
-
-
 
 }
