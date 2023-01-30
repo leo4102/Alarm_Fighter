@@ -16,6 +16,7 @@ public class ObjectPool : MonoBehaviour
     [SerializeField] ObjectInfo[] objectInfo = null;
     public static ObjectPool objectPool; //어디서든 접근 도록 하기 위해서
 
+    //한개의 Queue가 한개의 Pool의미
     public Queue<GameObject> noteQueue = new Queue<GameObject>();   //실질적인 하나의 Pool
 
     void Start()
@@ -32,7 +33,7 @@ public class ObjectPool : MonoBehaviour
         for (int i = 0; i < objectInfo.count; i++)
         {
             //Prefab Scene에 생성
-            GameObject obj = Instantiate(objectInfo.notePrefab, transform.position, Quaternion.identity);
+            GameObject obj = Instantiate(objectInfo.notePrefab, transform.position, Quaternion.identity);//일단 scene 아무곳에 생성
             obj.SetActive(false);//생성하자마자 비활성화
             //obj가 들어갈 부모 오브젝트 설정
             if (objectInfo.poolParent != null)

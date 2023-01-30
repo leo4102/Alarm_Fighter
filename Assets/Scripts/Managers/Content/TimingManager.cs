@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class TimingManager :MonoBehaviour
 {
+    AudioManager theAudioManager;
+    
     //GameObject _root;
     // 생성되는 흰 note를 넣을 List
     public List<GameObject> noteList = new List<GameObject>();
@@ -37,6 +39,9 @@ public class TimingManager :MonoBehaviour
     }*/
     void Start()
     {
+
+        theAudioManager = AudioManager.audioManager;
+        
         timingRange = new Vector2[timingRect.Length]; //크기 4
 
         for (int i = 0; i < timingRect.Length; i++)
@@ -61,6 +66,8 @@ public class TimingManager :MonoBehaviour
                     //Note가 timingRange에 속하면 해당 Note 삭제
                     //Destroy(noteList[i]);
                     Managers.Bpm.Able = true;//삽입함
+                    //AudioManager.audioManager.PlaySFX("Clap");
+                    theAudioManager.PlaySFX("Touch");
                     noteList[i].GetComponent<Note>().HideNote();//Note 삭제 대신에 Note의 이미지만 비활성화//이유: BGM이 안 나옴
                     noteList.RemoveAt(i);
                     Debug.Log("HIT" + j);

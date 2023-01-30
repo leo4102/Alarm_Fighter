@@ -35,6 +35,7 @@ public class NoteManager : MonoBehaviour
         }
     }
 
+    //Note랑 화면 끝 collider가 출동시 실행
     private void OnTriggerExit2D(Collider2D collision)
     {
         //노트가 화면 밖으로 나가면 삭제
@@ -42,7 +43,7 @@ public class NoteManager : MonoBehaviour
         {
             timingManager.noteList.Remove(collision.gameObject);//TimingManager2의 noteList에서 제거
             ObjectPool.objectPool.noteQueue.Enqueue(collision.gameObject);//notePool에 obj(Note) 반환
-            collision.gameObject.SetActive(false);//obj 비활성화
+            collision.gameObject.SetActive(false);//obj 비활성화(obj에 붙은 모든 컴포넌트(스크립트 포함)를 없는 것으로 간주)
 
             //Destroy(collision.gameObject);
         }

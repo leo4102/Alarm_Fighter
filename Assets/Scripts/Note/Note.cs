@@ -27,7 +27,7 @@ public class Note : MonoBehaviour
     //Note의 이미지를 비활성화 하는 함수
     public void HideNote()
     {
-        noteImage.enabled = false;
+        noteImage.enabled = false;//enabled는 SetActive함수와는 달리 한개의 컴포너트만 비활성활시 사용
     }
     //--------------------------------------------------------------------------
     public void CreateNote()

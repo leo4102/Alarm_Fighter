@@ -91,7 +91,7 @@ public class PoolManager
     }
 
     //pool 생성하고 dictionary에 추가
-    public void CreatePool(GameObject original, int count = 5)
+    public void CreatePool(GameObject original, int count = 5)//prefab객체를 pool에 몇개를 만들것인가
     {
         Pool pool = new Pool();
         pool.Init(original, count);
