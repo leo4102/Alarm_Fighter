@@ -30,7 +30,12 @@ public class MonsterVer2 : FieldObject
     protected override void BitBehave()
     {
         Animator anim = GetComponent<Animator>();
-        switch(nextBehavior)
+        
+        //이전 currentInd를 다시 원래 색으로 돌려놓기
+        SpriteRenderer temp = objectList[currentInd].GetComponent<SpriteRenderer>();
+        temp.color = new Color(87 / 255f, 87 / 255f, 87 / 255f, 1);        //Isolated Diamond(prefab)의 색
+        
+        switch (nextBehavior)
         {
             // idle 보류
             /*
@@ -39,16 +44,29 @@ public class MonsterVer2 : FieldObject
                 updateIdle();
                 break;*/
             case Define.State.ATTACKREADY:
+                
                 anim.Play("AttackReady");
                 updateAtttackReady();       //AtttackReady 단계에 맞는 변화가 나타나도록 함
+
+                temp = objectList[currentInd].GetComponent<SpriteRenderer>();
+                temp.color = Color.magenta;
+                
                 break;
             case Define.State.ATTACK:
                 anim.Play("Attack");
                 updateAttack();
+
+                temp = objectList[currentInd].GetComponent<SpriteRenderer>();
+                temp.color = Color.magenta;
+                
                 break;
             case Define.State.MOVE:
                 anim.Play("Move");
                 updateMove();
+
+                temp = objectList[currentInd].GetComponent<SpriteRenderer>();
+                temp.color = Color.magenta;
+
                 break;
 
         }

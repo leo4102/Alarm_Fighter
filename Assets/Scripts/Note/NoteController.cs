@@ -9,7 +9,7 @@ public class NoteController : MonoBehaviour     //Note2 객체(한 개)가 생성되고 �
     //[SerializeField] GameObject notePrefab = null;//생성할 Note 프리팹 연결
 
     
-    public void Update()
+    public void Update()        //TimingMananger의 Behaveaction 에 종속되도록 바꾸지 못하나?
     {
         //특정 시간 간격으로 노트 생성
         currentTime += Time.deltaTime;
@@ -34,7 +34,7 @@ public class NoteController : MonoBehaviour     //Note2 객체(한 개)가 생성되고 �
         {
             Managers.Resource.Destroy(collision.gameObject);        //-----------------------
             Managers.Timing.noteList.Remove(collision.gameObject);//TimingManager2의 noteList에서 제거
-            ObjectPool.objectPool.noteQueue.Enqueue(collision.gameObject);//notePool에 obj(Note) 반환      //-------------------
+            //ObjectPool.objectPool.noteQueue.Enqueue(collision.gameObject);//notePool에 obj(Note) 반환      //-------------------
             //collision.gameObject.SetActive(false);//obj 비활성화      //---------------------
 
             //Destroy(collision.gameObject);

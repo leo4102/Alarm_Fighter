@@ -10,6 +10,14 @@ public abstract class Field : MonoBehaviour                         //BasicField
     List<GameObject> playergridArray = new List<GameObject>();      //Player Diamond 저장 배열(field data)
     List<GameObject> monstergridArray = new List<GameObject>();     //Monster Diamond 정장 배열(field data)
     
+    protected GameObject grid_All;  //전체 생성된 Diamond를 담을 부모 GameObject
+
+    [SerializeField]
+    GameObject gridPrefab;          //Isometric Diamond(Prefab)
+
+    protected float height;         //세로        //BasicField서 초기화
+    protected float width;          //가로        //BasicField서 초기화
+    
     // getGridArray -> 타입 (플레이어 or 몬스터)에 따라 playergridArray 또는 monstergridArray를 반환한다. (1.17 재윤 추가)
     public List<GameObject> getGridArray(int type)
     {
@@ -31,13 +39,6 @@ public abstract class Field : MonoBehaviour                         //BasicField
         }
     }
 
-    protected GameObject grid_All;  //전체 생성된 Diamond를 담을 부모 오브젝트
-
-    [SerializeField]
-    GameObject gridPrefab;          //Isometric Diamond
-
-    protected float height;         //세로
-    protected float width;          //가로
 
     // getHeight(), getWidth() -> 만들어진 전체 타일의 width와 height를 반환한다.  (1.17 재윤 추가)
     public int getHeight() { return (int)height; }
@@ -73,8 +74,10 @@ public abstract class Field : MonoBehaviour                         //BasicField
     {
         scale_x = gridPrefab.transform.localScale.x;        //grid scale x축
         scale_y = gridPrefab.transform.localScale.y;        //grid scale y축
-        location_x = gridPrefab.transform.localPosition.x;  //grid 초기 x좌표 
-        location_y = gridPrefab.transform.localPosition.y;  //grid 초기 y좌표
+        location_x = gridPrefab.transform.localPosition.x;  //grid 초기 x좌표 //-1.5f
+        location_y = gridPrefab.transform.localPosition.y;  //grid 초기 y좌표 //-2.5f
+        location_x = -1.5f;
+        location_y = -2.47737f;
     }
     protected virtual void createObject()
     {
@@ -86,10 +89,15 @@ public abstract class Field : MonoBehaviour                         //BasicField
         {
             for (int x = 0; x < width; x++)
             {
+                GameObject go = new GameObject() { name = "Diamond Parent" };
                 GameObject grid = Instantiate(gridPrefab) as GameObject;
-                grid.transform.position = new Vector3((float)(((x_size + gap) * scale_x * x + (x_size + gap) * scale_x * y) + location_x), 
+                
+                grid.transform.SetParent(go.transform);       //하나로 뭉치기
+                go.transform.SetParent(grid_All.transform);       //하나로 뭉치기
+
+                go.transform.position = new Vector3((float)(((x_size + gap) * scale_x * x + (x_size + gap) * scale_x * y) + location_x), 
                     (float)(((-gap - y_size) * scale_y * x + (gap + y_size) * scale_y * y) + location_y), 0f);
-                grid.transform.SetParent(grid_All.transform);       //하나로 뭉치기
+
                 gridArray.Add(grid);                                //데이터 정보 저장
                 Debug.Log(grid);
             }
@@ -113,14 +121,34 @@ public abstract class Field : MonoBehaviour                         //BasicField
             temp.color = Color.red;
         }
     }
+
+    public void AttackedArea(int[] indexs)
+    {
+        for (int i = 0; i < indexs.Length; i++)
+        {
+            GameObject grid = gridArray[indexs[i]];
+            StartCoroutine("TempChangeColor", grid);
+        }
+    }
+
+    IEnumerator TempChangeColor(GameObject go)           
+    {
+        SpriteRenderer rend = go.GetComponent<SpriteRenderer>();
+        rend.color = Color.red;                             //AttackedArea(공격한 영역) 잠깐 빨강화
+        yield return new WaitForSeconds(0.3f);              //지정된 (float)초 만큼 대기
+        rend.color = new Color(87 / 255f, 87 / 255f, 87 / 255f, 1);
+    }
+
     public void Damage(int[] indexs)                        //Damage영역 collider 활성화 + 투명화
     {
         for (int i = 0; i < indexs.Length; i++)
         {
             GameObject temp = gridArray[indexs[i]];
-            SpriteRenderer sr = temp.GetComponent<SpriteRenderer>();
             StartCoroutine("ActiveDamageField", temp);      //코루틴을 실행하려면 StartCoroutine 함수를 사용해야 합니다.
-            sr.color = new Color(1, 1, 1, 0);               //흰색(투명),Damage영역 투명하게
+            
+            SpriteRenderer sr = temp.GetComponent<SpriteRenderer>();
+            sr.color = new Color(87 / 255f, 87 / 255f, 87 / 255f, 1);       //원래 Isolated Diamond(prefab)색으로 돌아옴
+            //sr.color = new Color(1, 1, 1, 0);                             //흰색(투명),Damage영역 투명하게
         }
     }
 
@@ -147,6 +175,6 @@ public abstract class Field : MonoBehaviour                         //BasicField
         prepabMove(grid_All);
         seperatedGridArea();
         Managers.Field.setField(this);      //(ex)this == BasicField(스크립트)
-        Field temp = Managers.Field.getField();
+        Field temp = Managers.Field.getField();     //불필요?
     }
 }

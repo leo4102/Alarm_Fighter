@@ -20,6 +20,11 @@ public class FieldManager
         field.Damage(indexs);
     }
 
+    public void AttackedArea(int [] indexs)
+    {
+        field.AttackedArea(indexs);
+    }
+
     
 
 }

@@ -2386,6 +2386,14 @@ PrefabInstance:
       value: 
       objectReference: {fileID: -142220293, guid: 0f24d4bc55038bc4aa7fd415fc295b27, type: 3}
     - target: {fileID: 7091234084099146608, guid: 9069a492e55403545bfb792fba9931cb, type: 3}
+      propertyPath: m_Transition
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7091234084099146608, guid: 9069a492e55403545bfb792fba9931cb, type: 3}
+      propertyPath: m_AnimationTriggers.m_HighlightedTrigger
+      value: Highlighted
+      objectReference: {fileID: 0}
+    - target: {fileID: 7091234084099146608, guid: 9069a492e55403545bfb792fba9931cb, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 0
       objectReference: {fileID: 0}
