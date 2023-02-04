@@ -156,7 +156,7 @@ GameObject:
   - component: {fileID: 1853420154736683552}
   - component: {fileID: 2305441491855657622}
   m_Layer: 0
-  m_Name: DummyMonster 3
+  m_Name: Monster3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

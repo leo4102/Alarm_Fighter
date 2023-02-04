@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class MonsterVer2 : FieldObject
 {
-    //idle º¸·ù (1.25)
-    Define.State nextBehavior = Define.State.MOVE;                  //´ÙÀ½ »óÅÂ
+    //idle ÂºÂ¸Â·Ã¹ (1.25)
+    Define.State nextBehavior = Define.State.MOVE;                  //Â´Ã™Ã€Â½ Â»Ã³Ã…Ã‚
     //to do : MonsterMove or MoveDirection
-    Define.PlayerMove nextDirection = Define.PlayerMove.Right;      //´ÙÀ½ ¿òÁ÷ÀÓ ¹æÇâ
-    MonsterPattern attackPattern = new LinePattern();               //¸ó½ºÅÍÀÇ °ø°İ ÆĞÅÏ
+    Define.PlayerMove nextDirection = Define.PlayerMove.Right;      //Â´Ã™Ã€Â½ Â¿Ã²ÃÃ·Ã€Ã“ Â¹Ã¦Ã‡Ã¢
+    MonsterPattern attackPattern = new LinePattern();               //Â¸Ã³Â½ÂºÃ…ÃÃ€Ã‡ Â°Ã¸Â°Ã Ã†ÃÃ…Ã
     int maxHp = 1;
     int currentHp;
     
@@ -16,14 +16,14 @@ public class MonsterVer2 : FieldObject
     {
         currentHp = maxHp;
 
-        type = 2;                                       //¸ó½ºÅÍ Å¸ÀÔ: 2
-        objectField = Managers.Field.getField();        //BasicField(½ºÅ©¸³Æ®) ¹İÈ¯
-        objectList = objectField.getGridArray(type);    //monstergridArray(¸ó½ºÅÍ ¿µ¿ªÀÇ grid) ¹İÈ¯
+        type = 2;                                       //Â¸Ã³Â½ÂºÃ…Ã Ã…Â¸Ã€Ã”: 2
+        objectField = Managers.Field.getField();        //BasicField(Â½ÂºÃ…Â©Â¸Â³Ã†Â®) Â¹ÃÃˆÂ¯
+        objectList = objectField.getGridArray(type);    //monstergridArray(Â¸Ã³Â½ÂºÃ…Ã Â¿ÂµÂ¿ÂªÃ€Ã‡ grid) Â¹ÃÃˆÂ¯
 
-        currentInd = objectList.Count / 2 - 1;          //¸ó½ºÅÍ ÃÊ±â À§Ä¡: monstergridArray ÀÇ ÀÎµ¦½º 2
+        currentInd = objectList.Count / 2 - 1;          //Â¸Ã³Â½ÂºÃ…Ã ÃƒÃŠÂ±Ã¢ Ã€Â§Ã„Â¡: monstergridArray Ã€Ã‡ Ã€ÃÂµÂ¦Â½Âº 2
         transform.position = objectList[currentInd].transform.position;
         
-        Managers.Timing.BehaveAction -= BitBehave;      //¸ó½ºÅÍÀÇ ºñÆ® ¸¶´Ù ½ÇÇàÇÒ BitBehave ±¸µ¶
+        Managers.Timing.BehaveAction -= BitBehave;      //Â¸Ã³Â½ÂºÃ…ÃÃ€Ã‡ ÂºÃ±Ã†Â® Â¸Â¶Â´Ã™ Â½Ã‡Ã‡Ã Ã‡Ã’ BitBehave Â±Â¸ÂµÂ¶
         Managers.Timing.BehaveAction += BitBehave;
     }
 
@@ -31,13 +31,13 @@ public class MonsterVer2 : FieldObject
     {
         Animator anim = GetComponent<Animator>();
         
-        //ÀÌÀü currentInd¸¦ ´Ù½Ã ¿ø·¡ »öÀ¸·Î µ¹·Á³õ±â
+        //ï¿½ï¿½ï¿½ï¿½ currentIndï¿½ï¿½ ï¿½Ù½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         SpriteRenderer temp = objectList[currentInd].GetComponent<SpriteRenderer>();
-        temp.color = new Color(87 / 255f, 87 / 255f, 87 / 255f, 1);        //Isolated Diamond(prefab)ÀÇ »ö
+        temp.color = new Color(87 / 255f, 87 / 255f, 87 / 255f, 1);        //Isolated Diamond(prefab)ï¿½ï¿½ ï¿½ï¿½
         
         switch (nextBehavior)
         {
-            // idle º¸·ù
+            // idle ÂºÂ¸Â·Ã¹
             /*
             case Define.State.IDLE:
                 anim.Play("Idle");
@@ -46,11 +46,13 @@ public class MonsterVer2 : FieldObject
             case Define.State.ATTACKREADY:
                 
                 anim.Play("AttackReady");
-                updateAtttackReady();       //AtttackReady ´Ü°è¿¡ ¸Â´Â º¯È­°¡ ³ªÅ¸³ªµµ·Ï ÇÔ
+
+                updateAtttackReady();       //AtttackReady ï¿½Ü°è¿¡ ï¿½Â´ï¿½ ï¿½ï¿½È­ï¿½ï¿½ ï¿½ï¿½Å¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
 
                 temp = objectList[currentInd].GetComponent<SpriteRenderer>();
                 temp.color = Color.magenta;
                 
+
                 break;
             case Define.State.ATTACK:
                 anim.Play("Attack");
@@ -72,7 +74,7 @@ public class MonsterVer2 : FieldObject
         }
     }
 
-    void ChaseCheck()       //¸¸¾à ÇöÀç »óÅÂ°¡ ¿òÁ÷¿©¾ß ÇÏ´Â Define.State.MOVE ¶ó¸é ¿òÁ÷ÀÏ ·£´ı ¹æÇâ ¹İÈ¯
+    void ChaseCheck()       //Â¸Â¸Â¾Ã  Ã‡Ã¶Ã€Ã§ Â»Ã³Ã…Ã‚Â°Â¡ Â¿Ã²ÃÃ·Â¿Â©Â¾ÃŸ Ã‡ÃÂ´Ã‚ Define.State.MOVE Â¶Ã³Â¸Ã© Â¿Ã²ÃÃ·Ã€Ã Â·Â£Â´Ã½ Â¹Ã¦Ã‡Ã¢ Â¹ÃÃˆÂ¯
     {
         //to do : left or right or Stop Check
         int rand = Random.Range(0, 2);
@@ -97,37 +99,37 @@ public class MonsterVer2 : FieldObject
     }
     void updateMove()
     {
-        ChaseCheck();               //¿òÁ÷ÀÏ ·£´ı ¹æÇâ °áÁ¤     
-        mayGo(nextDirection);       //½ÇÁ¦ ¿òÁ÷ÀÓ
+        ChaseCheck();               //Â¿Ã²ÃÃ·Ã€Ã Â·Â£Â´Ã½ Â¹Ã¦Ã‡Ã¢ Â°Ã¡ÃÂ¤     
+        mayGo(nextDirection);       //Â½Ã‡ÃÂ¦ Â¿Ã²ÃÃ·Ã€Ã“
         nextBehavior = Define.State.ATTACKREADY;
     }
     void updateAtttackReady()
     {
-        AttackReady();              //°ø°İÇÒ ¿µ¿ª »¡°­È­
+        AttackReady();              //Â°Ã¸Â°ÃÃ‡Ã’ Â¿ÂµÂ¿Âª Â»Â¡Â°Â­ÃˆÂ­
         nextBehavior = Define.State.ATTACK;
     }
     void updateAttack()
     {
-        Attack();                   //Damage¿µ¿ª collider È°¼ºÈ­ + Åõ¸íÈ­
+        Attack();                   //DamageÂ¿ÂµÂ¿Âª collider ÃˆÂ°Â¼ÂºÃˆÂ­ + Ã…ÃµÂ¸Ã­ÃˆÂ­
         nextBehavior = Define.State.MOVE;
         //nextBehavior = Define.State.IDLE;
-        //idle º¸·ù(1.25)
+        //idle ÂºÂ¸Â·Ã¹(1.25)
     }
     protected override void Attack()
     {
-        int[] pattern = attackPattern.calculateIndex(currentInd);       //¸ó½ºÅÍ°¡ °ø°İÇÒ gridÀÇ ÀÎµ¦½º¸¦ pattern¿¡ ¹İÈ¯
-        Managers.Field.Attack(pattern);                                 //Damage¿µ¿ª collider È°¼ºÈ­ + Åõ¸íÈ­
+        int[] pattern = attackPattern.calculateIndex(currentInd);       //Â¸Ã³Â½ÂºÃ…ÃÂ°Â¡ Â°Ã¸Â°ÃÃ‡Ã’ gridÃ€Ã‡ Ã€ÃÂµÂ¦Â½ÂºÂ¸Â¦ patternÂ¿Â¡ Â¹ÃÃˆÂ¯
+        Managers.Field.Attack(pattern);                                 //DamageÂ¿ÂµÂ¿Âª collider ÃˆÂ°Â¼ÂºÃˆÂ­ + Ã…ÃµÂ¸Ã­ÃˆÂ­
     }
     void AttackReady()
     {
-        int[] pattern = attackPattern.calculateIndex(currentInd);       //¸ó½ºÅÍ°¡ °ø°İÇÒ gridÀÇ ÀÎµ¦½º¸¦ pattern¿¡ ¹İÈ¯
-        Managers.Field.WarningAttack(pattern);                          //ÇØ´ç ¿µ¿ª »¡°­È­
+        int[] pattern = attackPattern.calculateIndex(currentInd);       //Â¸Ã³Â½ÂºÃ…ÃÂ°Â¡ Â°Ã¸Â°ÃÃ‡Ã’ gridÃ€Ã‡ Ã€ÃÂµÂ¦Â½ÂºÂ¸Â¦ patternÂ¿Â¡ Â¹ÃÃˆÂ¯
+        Managers.Field.WarningAttack(pattern);                          //Ã‡Ã˜Â´Ã§ Â¿ÂµÂ¿Âª Â»Â¡Â°Â­ÃˆÂ­
     }
 
 
-    private void OnTriggerEnter2D(Collider2D collision)                 //PlayerÀÇ °ø°İÀ¸·Î ÀÎÇØ¼­ ¸ó½ºÅÍ°¡ È°¼ºÈ­µÈ grid¿¡ ´êÀ» °æ¿ì
+    private void OnTriggerEnter2D(Collider2D collision)                 //PlayerÃ€Ã‡ Â°Ã¸Â°ÃÃ€Â¸Â·Ã Ã€ÃÃ‡Ã˜Â¼Â­ Â¸Ã³Â½ÂºÃ…ÃÂ°Â¡ ÃˆÂ°Â¼ÂºÃˆÂ­ÂµÃˆ gridÂ¿Â¡ Â´ÃªÃ€Â» Â°Ã¦Â¿Ã¬
     {
-        currentHp -= 1;                                                 //¸ó½ºÅÍ´Â ÇÑ¹æ ¸ÂÀ¸¸é µÚÁü
+        currentHp -= 1;                                                 //Â¸Ã³Â½ÂºÃ…ÃÂ´Ã‚ Ã‡Ã‘Â¹Ã¦ Â¸Ã‚Ã€Â¸Â¸Ã© ÂµÃšÃÃ¼
         GetComponent<Animator>().Play("Hit");
 
         Debug.Log("Monster Hit");
@@ -139,10 +141,11 @@ public class MonsterVer2 : FieldObject
     {
         Debug.Log("MonsterDIe!");
         Managers.Game.MinusMonsterNum();
-        Managers.Timing.BehaveAction -= BitBehave;                           //ÇöÀç monsterIndex ¹øÂ° ¸ó½ºÅÍÀÇ ºñÆ® ¸¶´Ù ½ÇÇàÇÒ BitBehave ±¸µ¶ ÇØÁ¦
-        GameScene gamescene = (GameScene)Managers.Scene.CurrentScene;        //GameScene(½ºÅ©¸³Æ®) ¹İÈ¯
-        gamescene.NextMonsterIndex();                                        //´ÙÀ½ ¸ó½ºÅÍ »ı¼º
+        Managers.Timing.BehaveAction -= BitBehave;                           //Ã‡Ã¶Ã€Ã§ monsterIndex Â¹Ã¸Ã‚Â° Â¸Ã³Â½ÂºÃ…ÃÃ€Ã‡ ÂºÃ±Ã†Â® Â¸Â¶Â´Ã™ Â½Ã‡Ã‡Ã Ã‡Ã’ BitBehave Â±Â¸ÂµÂ¶ Ã‡Ã˜ÃÂ¦
+        GameScene gamescene = (GameScene)Managers.Scene.CurrentScene;        //GameScene(Â½ÂºÃ…Â©Â¸Â³Ã†Â®) Â¹ÃÃˆÂ¯
+        gamescene.NextMonsterIndex();                                        //Â´Ã™Ã€Â½ Â¸Ã³Â½ÂºÃ…Ã Â»Ã½Â¼Âº
         Destroy(gameObject);
         Managers.Sound.Play("Die", Define.Sound.Effect, 2.0f);
+
     }
 }

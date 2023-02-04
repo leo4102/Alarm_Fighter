@@ -5,11 +5,13 @@ using UnityEngine;
 
 public class GameScene : BaseScene
 {
-    int monsterIndex = 0;           //ÇöÀç ¸ó½ºÅÍ ÀÎµ¦½º(Á×À¸¸é Áõ°¡)
-    int maxMonsterNum;              //ÃÖ´ë ¸ó½ºÅÍ ¼ö      //monsters(List).Count ·Î ÃÊ±âÈ­µÊ
+    int monsterIndex = 0;           //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Îµï¿½ï¿½ï¿½(ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½)
+    int maxMonsterNum;              //ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½      //monsters(List).Count ï¿½ï¿½ ï¿½Ê±ï¿½È­ï¿½ï¿½
 
     [SerializeField]
-    List<GameObject> monsters = new List<GameObject>();     //¾îµð¼­ ÃÊ±âÈ­? InspectorÃ¢¼­ ¸¶¿ì½º µå·¡±×
+
+    List<GameObject> monsters = new List<GameObject>();     //ï¿½ï¿½ï¿½ ï¿½Ê±ï¿½È­? InspectorÃ¢ï¿½ï¿½ ï¿½ï¿½ï¿½ì½º ï¿½å·¡ï¿½ï¿½
+
 
     [SerializeField]
     GameObject backGround;
@@ -26,10 +28,10 @@ public class GameScene : BaseScene
 
     protected override void Init()
     {
-        base.Init();            //base´Â ºÎ¸ð Å¬·¡½º¸¦ ÀÇ¹Ì
+        base.Init();            //baseï¿½ï¿½ ï¿½Î¸ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ç¹ï¿½
         SetMaxMonsterNum();
         Managers.Game.SetMonsterCount(maxMonsterNum);
-        SoundBgmPlay();         //BaseScene¿¡ Á¸Àç
+        SoundBgmPlay();         //BaseSceneï¿½ï¿½ ï¿½ï¿½ï¿½
         SponeMonster();
         SponeBackGround();
         SponeNoteBar();
@@ -38,12 +40,12 @@ public class GameScene : BaseScene
     }
     public void Update()
     {
-        Managers.Timing.UpdatePerBit();         //¸Å ºñÆ®¸¶´Ù ¸ó½ºÅÍ Çàµ¿ ¾÷µ¥ÀÌÆ®
-        Managers.Game.CheckLeftMonster();       //³²Àº ¸ó½ºÅÍ°¡ Á¸ÀçÇÏ´ÂÁö È®ÀÎ
+        Managers.Timing.UpdatePerBit();         //ï¿½ï¿½ ï¿½ï¿½Æ®ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½àµ¿ ï¿½ï¿½ï¿½ï¿½Æ®
+        Managers.Game.CheckLeftMonster();       //ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Í°ï¿½ ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ï¿½ï¿½ È®ï¿½ï¿½
     }
-    private void SponeMonster()                 //Æ¯Á¤(monsterIndex) ÀÎµ¦½º ¹øÂ° ¸ó½ºÅÍ »ý¼º
+    private void SponeMonster()                 //Æ¯ï¿½(monsterIndex) ï¿½Îµï¿½ï¿½ï¿½ ï¿½ï¿½Â° ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
     {
-        GameObject go = Instantiate(monsters[monsterIndex]) as GameObject;
+        GameObject go = Managers.Resource.Instantiate(monsters[monsterIndex]) as GameObject;
     }
     private void SponeBackGround()              //
     {
@@ -66,7 +68,7 @@ public class GameScene : BaseScene
         GameObject go = Managers.Resource.Load<GameObject>("Prefabs/Fields/Field");
         go = Instantiate<GameObject>(go) as GameObject;
     }
-    public void NextMonsterIndex()                          //´ÙÀ½ ¸ó½ºÅÍ »ý¼º
+    public void NextMonsterIndex()                          //ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
     {
         if (monsterIndex < maxMonsterNum - 1)
         {

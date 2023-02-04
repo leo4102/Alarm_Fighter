@@ -1,26 +1,26 @@
-using System;       //Action ¶§¹®¿¡ ÇÊ¿ä
+using System;       //Action ë•Œë¬¸ì— í•„ìš”
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class TimingManager
 {
-    //(ÇöÀç È­¸é¿¡ È°¼ºÈ­ µÈ)»ı¼ºµÇ´Â Èò note¸¦ ³ÖÀ» List
+    //(í˜„ì¬ í™”ë©´ì— í™œì„±í™” ëœ)ìƒì„±ë˜ëŠ” í° noteë¥¼ ë„£ì„ List
     public List<GameObject> noteList = new List<GameObject>();
-    public Vector2[] timingRange = null;          //CheckingRange(½ºÅ©¸³Æ®)·Î ºÎÅÍ °¡Áö°í ¿Â´Ù
+    public Vector2[] timingRange = null;          //CheckingRange(ìŠ¤í¬ë¦½íŠ¸)ë¡œ ë¶€í„° ê°€ì§€ê³  ì˜¨ë‹¤
 
-    public Action BehaveAction;     //TimingManagerÀÇ UpdatePerBit()¿¡¼­ ½ÇÇà(¹Ù·Î ¾Æ·¡)
+    public Action BehaveAction;     //TimingManagerì˜ UpdatePerBit()ì—ì„œ ì‹¤í–‰(ë°”ë¡œ ì•„ë˜)
     double currentTime = 0;
     
   /*  public void Init()
     {
         timingRange = GameObject.FindObjectOfType<CheckingRange>().GetTimingRange();
         *//*if (timingRange == null)
-            Debug.Log("timingRange°¡ NULLÀÌ´Ù");*//*
+            Debug.Log("timingRangeê°€ NULLì´ë‹¤");*//*
     }*/
 
     //[SerializeField] Transform centerFlame=null;
-    /* = GameObject.Find("CenterFlame").transform;*/  //CenterFlameÀÇ À§Ä¡
+    /* = GameObject.Find("CenterFlame").transform;*/  //CenterFlameì˜ ìœ„ì¹˜
 
 
     //[SerializeField] 
@@ -30,13 +30,13 @@ public class TimingManager
     GameObject.Find("CoolRec").GetComponent<RectTransform>(),
     GameObject.Find("GoodRec").GetComponent<RectTransform>(),
     GameObject.Find("BadRec").GetComponent<RectTransform>()
-};*/ //»ö±òÀÖ´Â ÀÌ¹ÌÁö ¹Ú½º
-     //Vector2[] timingRange = null; //timingRectÀÇ x¹üÀ§
+};*/ //ìƒ‰ê¹”ìˆëŠ” ì´ë¯¸ì§€ ë°•ìŠ¤
+     //Vector2[] timingRange = null; //timingRectì˜ xë²”ìœ„
 
     //GameObject _root;
     /* public void Init()
      {
-          timingRange = new Vector2[timingRect.Length]; //Å©±â 4
+          timingRange = new Vector2[timingRect.Length]; //í¬ê¸° 4
 
 
 
@@ -47,7 +47,7 @@ public class TimingManager
              Util.FindChild(
 
 
-             //timingRange[0]ÀÌ perfectRectÀÇ ¹üÀ§ ¼ø
+             //timingRange[0]ì´ perfectRectì˜ ë²”ìœ„ ìˆœ
              timingRange[i] = new Vector2(timingRect[i].localPosition.x - timingRect[i].rect.width / 2,
                  timingRect[i].anchoredPosition.x + timingRect[i].rect.width / 2);
          }
@@ -57,18 +57,18 @@ public class TimingManager
 
     /* void Start()
      {
-         timingRange = new Vector2[timingRect.Length]; //Å©±â 4
+         timingRange = new Vector2[timingRect.Length]; //í¬ê¸° 4
 
          for (int i = 0; i < timingRect.Length; i++)
          {
-             //timingRange[0]ÀÌ perfectRectÀÇ ¹üÀ§ ¼ø
+             //timingRange[0]ì´ perfectRectì˜ ë²”ìœ„ ìˆœ
              timingRange[i] = new Vector2(timingRect[i].localPosition.x - timingRect[i].rect.width / 2,
                  timingRect[i].anchoredPosition.x + timingRect[i].rect.width / 2);
          }
      }*/
 
-    //»ç½Ç»ó ¸ó½ºÅÍ ¶§¹®¿¡ ÇÊ¿ä
-    public void UpdatePerBit()      //GameSceneÀÇ Update()¹®¿¡¼­ È£Ãâ     //Note°¡ Bpm¿¡ ¸ÂÃç »ı¼ºµÇ´Â ¼ø°£¿¡ ¾÷µ¥ÀÌÆ®
+    //ì‚¬ì‹¤ìƒ ëª¬ìŠ¤í„° ë•Œë¬¸ì— í•„ìš”
+    public void UpdatePerBit()      //GameSceneì˜ Update()ë¬¸ì—ì„œ í˜¸ì¶œ     //Noteê°€ Bpmì— ë§ì¶° ìƒì„±ë˜ëŠ” ìˆœê°„ì— ì—…ë°ì´íŠ¸
     {
         currentTime += Time.deltaTime;
         if (currentTime >= 60d / Managers.Bpm.BPM)
@@ -80,38 +80,40 @@ public class TimingManager
         }
     }
     
-    //»ı¼ºµÈ NoteÁß timingRange¿¡ ¼ÓÇÏ´Â Note°¡ ÀÖ´ÂÁö È®ÀÎ
-    public bool CheckTiming()                   //PlayerTest Update()¹®¿¡¼­ °è¼Ó È£ÃâµÊ     //»ç½Ç»ó Player ¶§¹®¿¡ ÇÊ¿ä
+    //ìƒì„±ëœ Noteì¤‘ timingRangeì— ì†í•˜ëŠ” Noteê°€ ìˆëŠ”ì§€ í™•ì¸
+    public bool CheckTiming()                   //PlayerTest Update()ë¬¸ì—ì„œ ê³„ì† í˜¸ì¶œë¨     //ì‚¬ì‹¤ìƒ Player ë•Œë¬¸ì— í•„ìš”
     {
-        for (int i = 0; i < noteList.Count; i++)//»ı¼ºµÈ Note¸¦ ÀüºÎ È®ÀÎ
+        for (int i = 0; i < noteList.Count; i++)//ìƒì„±ëœ Noteë¥¼ ì „ë¶€ í™•ì¸
         {
-            float notePosx = noteList[i].transform.localPosition.x;// NoteÇÑ°³ÀÇ x°ª
+            float notePosx = noteList[i].transform.localPosition.x;// Noteí•œê°œì˜ xê°’
 
-            for (int j = 0; j < timingRange.Length; j++)//4°³ÀÇ timingRange¿Í Á¢ÇÏ´Â È®ÀÎ
+            for (int j = 0; j < timingRange.Length; j++)//4ê°œì˜ timingRangeì™€ ì ‘í•˜ëŠ” í™•ì¸
             {
                 if ((timingRange[j].x <= notePosx) && (notePosx <= timingRange[j].y))
                 {
-                    //Note°¡ timingRange¿¡ ¼ÓÇÏ¸é ÇØ´ç Note »èÁ¦
+                    //Noteê°€ timingRangeì— ì†í•˜ë©´ í•´ë‹¹ Note ì‚­ì œ
                     //Destroy(noteList[i]);
                     
-                    //Managers.Bpm.Able = true;//»ğÀÔÇÔ        //------------------------------
-                    noteList[i].GetComponent<Note>().HideNote();//Note »èÁ¦ ´ë½Å¿¡ NoteÀÇ ÀÌ¹ÌÁö¸¸ ºñÈ°¼ºÈ­//ÀÌÀ¯: BGMÀÌ ¾È ³ª¿È
+                    //Managers.Bpm.Able = true;//ì‚½ì…í•¨        //------------------------------
+                    noteList[i].GetComponent<Note>().HideNote();//Note ì‚­ì œ ëŒ€ì‹ ì— Noteì˜ ì´ë¯¸ì§€ë§Œ ë¹„í™œì„±í™”//ì´ìœ : BGMì´ ì•ˆ ë‚˜ì˜´
                     noteList.RemoveAt(i);
                     //Debug.Log("HIT" + j);
                     return true;
                 }
             }
         }
-        Debug.Log("Miss");//»ı¼ºµÈ NoteÀüºÎ timingRange¿¡ ¼ÓÇÏÁö ¾ÊÀ¸¸é Miss
+        Debug.Log("Miss");//ìƒì„±ëœ Noteì „ë¶€ timingRangeì— ì†í•˜ì§€ ì•Šìœ¼ë©´ Miss
         return false;
     }
 
     public void Clear()
     {
-        noteList.Clear();       //noteList=null;·Î ÇÏ¸é ¾ÈµÊ
+
+        noteList.Clear();       //noteList=null;ë¡œ í•˜ë©´ ì•ˆë¨
         timingRange = null;
         BehaveAction = null;
         currentTime = 0;
+
     }
 
     

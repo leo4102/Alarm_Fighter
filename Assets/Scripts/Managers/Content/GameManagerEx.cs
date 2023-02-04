@@ -4,21 +4,25 @@ using UnityEngine;
 
 public class GameManagerEx
 {
-    int MonsterCount;           //¸ó½ºÅÍ °³¼ö        //¾îµð¼­ ÃÊ±âÈ­? GameSCene ½ºÅ©¸³Æ® Init()¼­
+    int MonsterCount;           //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½        //ï¿½ï¿½ï¿½ ï¿½Ê±ï¿½È­? GameSCene ï¿½ï¿½Å©ï¿½ï¿½Æ® Init()ï¿½ï¿½
     public GameObject CurrentPlayer { get; set; }
-    public void GameOver()      //ÁÖÀÎ°ø Á×À½
+    public void GameOver()      //ï¿½ï¿½ï¿½Î°ï¿½ ï¿½ï¿½ï¿½
     {
         Managers.Clear();
-        Managers.Sound.Clear();     //ºÒÇÊ¿ä?
+        Managers.Sound.Clear();     //ï¿½ï¿½ï¿½Ê¿ï¿½?
         Managers.Scene.LoadScene("GameOver");
-        //Managers.Sound.Play("GameClear", Define.Sound.Bgm);     //GameClearÀÌ ¾ø´Âµ¥?±×¸®°í °æ·Î¿¡ Asset>Resources ºÒÇÊ¿ä?
+
+        //Managers.Sound.Play("GameClear", Define.Sound.Bgm);     //GameClearï¿½ï¿½ ï¿½ï¿½Âµï¿½?ï¿½×¸ï¿½ï¿½ï¿½ ï¿½ï¿½Î¿ï¿½ Asset>Resources ï¿½ï¿½ï¿½Ê¿ï¿½?
+
     }
-    public void StageClear()       //¸ó½ºÅÍ Á×À½
+    public void StageClear()       //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
     {
         Managers.Clear();
         Managers.Scene.LoadScene("StageClear");
-        Managers.Sound.Clear();     //ºÒÇÊ¿ä?
+
+        Managers.Sound.Clear();     //ï¿½ï¿½ï¿½Ê¿ï¿½?
         //Managers.Sound.Play("GameClear", Define.Sound.Bgm);
+
     }
     public void SetMonsterCount(int num)        
     {
@@ -32,7 +36,7 @@ public class GameManagerEx
     {
         return MonsterCount;
     }
-    public void CheckLeftMonster()      //³²Àº ¸ó½ºÅÍ°¡ ¾ø´Ù¸é ½ºÅ×ÀÌÁö Å¬¸®¾î  //GameScene Update()¹®¿¡¼­ È£Ãâ
+    public void CheckLeftMonster()      //ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Í°ï¿½ ï¿½ï¿½Ù¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½  //GameScene Update()ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ È£ï¿½ï¿½
     {
         if (MonsterCount <= 0)
             StageClear();
