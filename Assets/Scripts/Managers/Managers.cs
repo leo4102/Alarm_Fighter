@@ -73,4 +73,10 @@ public class Managers : MonoBehaviour       //@Managers(GameObject)¿¡ »ğÀÔµÊ(½ÃÀ
         Scene.Clear();
         Timing.Clear();
     }
+
+   
+    
 }
+
+
+

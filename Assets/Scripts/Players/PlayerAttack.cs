@@ -7,7 +7,7 @@ public class PlayerAttack : MonoBehaviour       //초기 비활성화 되어있는 "Attack
     
     public void Attacking()
     {
-        gameObject.SetActive(true);     //Attack(GameObject) 활성화
+        gameObject.SetActive(true);             //Attack(GameObject) 활성화
         Animator anim = GetComponent<Animator>();
         anim.Play("Attack");
 

@@ -271,6 +271,7 @@ GameObject:
   - component: {fileID: 519420032}
   - component: {fileID: 519420031}
   - component: {fileID: 519420029}
+  - component: {fileID: 519420033}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -344,6 +345,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &519420033
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519420028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14b608d3e706b484293feff48d9f8071, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 10
 --- !u!1 &573154748
 GameObject:
   m_ObjectHideFlags: 0
@@ -390,9 +404,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   soundBgmName: GameScene1
   monsters:
-  - {fileID: 7012510767514665602, guid: 25eb9f7d4659e864eba3efcc547b4269, type: 3}
-  - {fileID: 1646505309646870534, guid: 8c588e0b0dbcba4498b1e422db3a0c35, type: 3}
-  - {fileID: 2500648977618588803, guid: 4e33d76abc4ee754da1c13051de39938, type: 3}
+  - {fileID: 4648987557626052125, guid: 4d8008d56f3cbb34eb02c3b9b952a020, type: 3}
   backGround: {fileID: 18687383069746614, guid: af7a8ae35d76b5b4a9283f46dee6adda, type: 3}
 --- !u!1 &1010817030
 GameObject:
@@ -862,7 +874,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1843699564
 MonoBehaviour:
   m_ObjectHideFlags: 0

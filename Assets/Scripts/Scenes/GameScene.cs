@@ -13,7 +13,7 @@ public class GameScene : BaseScene
 
     [SerializeField]
     GameObject backGround;
-
+    
     int GetMaxMonsterNum() { return maxMonsterNum; }
     void SetMaxMonsterNum() { maxMonsterNum = monsters.Count; }
 
@@ -33,7 +33,7 @@ public class GameScene : BaseScene
         SponeMonster();
         SponeBackGround();
         SponeNoteBar();
-        SponePlayer();
+        SponePlayer();        
         SponeField();
     }
     public void Update()
@@ -57,13 +57,13 @@ public class GameScene : BaseScene
     }
     private void SponePlayer()
     {
-        GameObject go = Managers.Resource.Load<GameObject>("Prefabs/Player/Player");
+        GameObject go = Managers.Resource.Load<GameObject>("Prefabs/Player/MyPlayer");
         go = Instantiate<GameObject>(go) as GameObject;     //
         Managers.Game.CurrentPlayer = go;
     }
     private void SponeField()
     {
-        GameObject go = Managers.Resource.Load<GameObject>("Prefabs/Fields/Field");
+        GameObject go = Managers.Resource.Load<GameObject>("Prefabs/Fields/MyField");
         go = Instantiate<GameObject>(go) as GameObject;
     }
     public void NextMonsterIndex()                          //다음 몬스터 생성

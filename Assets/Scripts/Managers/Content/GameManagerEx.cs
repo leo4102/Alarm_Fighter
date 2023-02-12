@@ -4,8 +4,14 @@ using UnityEngine;
 
 public class GameManagerEx
 {
-    int MonsterCount;           //몬스터 개수        //어디서 초기화? GameSCene 스크립트 Init()서
+    int MonsterCount;           //몬스터 개수(남은)        //어디서 초기화? GameSCene 스크립트 Init()서
     public GameObject CurrentPlayer { get; set; }
+
+
+    public List<GameObject> CurrentVMons = new List<GameObject>();     //현재 필드에 나와있는 세로 공격형 몬스터 수       //gamemanagers 로 보냄
+    public List<GameObject> CurrentHMons = new List<GameObject>();     //현재 필드에 나와있는 가로 공격형 몬스터 수
+    public List<GameObject> CurrentRMons = new List<GameObject>();     //현재 필드에 나와있는 랜덤 공격형 몬스터 수
+    
     public void GameOver()      //주인공 죽음
     {
         Managers.Clear();

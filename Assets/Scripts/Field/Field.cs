@@ -122,7 +122,7 @@ public abstract class Field : MonoBehaviour                         //BasicField
         }
     }
 
-    public void AttackedArea(int[] indexs)
+    public void AttackedArea(int[] indexs)      //플레이어용 공격할영역:빨간색 표시    
     {
         for (int i = 0; i < indexs.Length; i++)
         {

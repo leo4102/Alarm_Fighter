@@ -24,9 +24,10 @@ public class MonsterVer2 : FieldObject
         transform.position = objectList[currentInd].transform.position;
         
         Managers.Timing.BehaveAction -= BitBehave;      //몬스터의 비트 마다 실행할 BitBehave 구독
-        Managers.Timing.BehaveAction += BitBehave;
+        Managers.Timing.BehaveAction += BitBehave;  
     }
 
+    
     protected override void BitBehave()
     {
         Animator anim = GetComponent<Animator>();
@@ -76,6 +77,7 @@ public class MonsterVer2 : FieldObject
     {
         //to do : left or right or Stop Check
         int rand = Random.Range(0, 2);
+        
         switch(rand)
         {
             case 0:

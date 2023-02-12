@@ -25,7 +25,20 @@ public class Define
         ATTACK,     //공격
         HIT,        //맞음
         MOVE,
+        DIE,
+        SPAWN,
+        NOTSPAWN,
     }
+
+    public enum FieldArray
+    {
+        LEFT,
+        RIGHT,
+        TOP,
+        All_ONE,
+    }
+
+
 
     public enum Sound
     {

@@ -15,7 +15,7 @@ public class NoteController : MonoBehaviour     //Note2 °´Ã¼(ÇÑ °³)°¡ »ý¼ºµÇ°í Æ
         currentTime += Time.deltaTime;
         if (currentTime >= 60d / Managers.Bpm.BPM)
         {
-            Debug.Log("Note2 created"+currentTime);
+            //Debug.Log("Note2 created"+currentTime);
             GameObject t_note = Managers.Resource.Instantiate("Note2",gameObject.transform);//------------------------------
             
             //GameObject t_note = ObjectPool.objectPool.noteQueue.Dequeue();//notePool¿¡¼­ obj(Note) ÇÏ³ª ²¨³¿      //--------------

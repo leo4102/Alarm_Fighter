@@ -11,7 +11,7 @@ public class BasicField : Field         //Field(GameObject)¿¡ »ðÀÔµÊ(GameScene(½
    
     public override void setWidth()
     {
-        width = 3;
+        width = 20;
     }
 
 }

@@ -24,7 +24,7 @@ public class Util
         return transform.gameObject;
     }
 
-    //go의 자식 중 이름이 name인 자식 찾아서 해당 component return, recursive : 자식의 자식까지 재귀적으로 찾을지
+    //go의 자식 중 이름이 name인 자식 찾아서 해당 component(T) return, recursive : 자식의 자식까지 재귀적으로 찾을지
     public static T FindChild<T>(GameObject go, string name = null, bool recursive = false) where T : UnityEngine.Object
     {
         if (go == null)

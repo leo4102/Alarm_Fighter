@@ -75,7 +75,7 @@ public class TimingManager
         {
             if (BehaveAction != null)
                 BehaveAction.Invoke();
-            Debug.Log("work!");
+            //Debug.Log("work!");
             currentTime -= 60d / Managers.Bpm.BPM;
         }
     }
